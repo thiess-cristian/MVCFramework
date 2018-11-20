@@ -1,17 +1,19 @@
 <?php
 require_once "../app/config.php";
-ini_set("error_log",__DIR__."/../logs/error.log");
-error_reporting(E_ALL);
-ini_set("display_errors",0);
+require_once "../src/Router.php";
+require_once "../app/routes.php";
 
-if($config["env"]=="dev"){
-    ini_set("display_errors",1);
+ini_set("error_log", __DIR__ . "/../logs/error.log");
+error_reporting(E_ALL);
+ini_set("display_errors", 0);
+
+if ($config["env"] == "dev") {
+    ini_set("display_errors", 1);
 }
 
-$_SERVER["REQUEST_URI"];
+$uri = $_SERVER["REQUEST_URI"];
+$query = $_SERVER["QUERY_STRING"];
 
-var_dump($_SERVER["REQUEST_URI"]);
+$router = new Router($routes);
 
-$_SERVER["QUERY_STRING"];
-
-var_dump($_SERVER["QUERY_STRING"]);
+$router->callAction($uri,$query);
