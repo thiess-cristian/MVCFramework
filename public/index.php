@@ -1,4 +1,9 @@
 <?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Framework\Router;
+
 require_once "../app/config.php";
 require_once "../src/Router.php";
 require_once "../app/routes.php";

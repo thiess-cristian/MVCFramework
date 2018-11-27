@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 class PageController
 {
     public function __construct()
@@ -7,12 +9,12 @@ class PageController
 
     }
 
-    public  function nothingAction(){
-
+    public  function indexAction(){
+        //echo "index";
     }
 
     public function aboutUsAction(){
-        echo "about page";
+        //echo "about page";
     }
 
 
