@@ -9,13 +9,18 @@ class PageController
 
     }
 
-    public  function indexAction(){
-        //echo "index";
+    public  function indexAction(array $params):void{
+        echo "index";
     }
 
-    public function aboutUsAction(){
-        //echo "about page";
+    public function aboutUsAction(array $params):void{
+        echo "about page";
     }
+
+    public function userAction(array $params):void{
+        echo "user ".$params[0];
+    }
+
 
 
 }

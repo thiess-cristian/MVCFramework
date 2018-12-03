@@ -14,7 +14,7 @@ class Controller
         ));
     }
 
-    public function view(string $viewFile, array $params = [])
+    public function view(string $viewFile, array $params = []):void
     {
         echo $this->twig->render($viewFile, $params);
     }

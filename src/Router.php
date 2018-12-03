@@ -11,42 +11,24 @@ class Router
         $this->routes = $routes;
     }
 
-    public function callAction(string $uri, string $query)
+    public function callAction(string $uri, string $query):void
     {
-
+        $params=array();
         if(!isset($this->routes[$uri])){
 
+            preg_match('/\d+/', $_SERVER['REQUEST_URI'], $id);
+            $uri = preg_replace('/\d+/', '{id}', $_SERVER['REQUEST_URI']);
+            $params[0]=$id[0];
         }
 
-        /*
-        preg_match('/\d+/', $uri, $id);
-
-        var_dump($id);
-
-
-        if(!empty($id)){
-
-            $subUri=substr($uri,0,strlen($uri)-strlen($id[0]));
-
-            //var_dump($this->routes);
-
-            foreach ($this->routes as $key){
-                var_dump($key);
-
-                //preg_match($subUri.'{.}',$key,$foundRoute);
-                //echo $foundRoute;
-
-            }
-        }
-        */
         $controller = $this->routes[$uri]['controller'];
 
-        require_once ("../app/Controllers/".$controller.".php");
+        //require_once ("../app/Controllers/".$controller.".php");
 
-        $controllerObj = new $controller;
-
+        $className='App\\Controllers\\'.$controller;
+        $controllerObj = new $className();
         $action = $this->routes[$uri]['action'];
-        $controllerObj->{$action}();
+        $controllerObj->{$action}($params);
     }
 
 }
