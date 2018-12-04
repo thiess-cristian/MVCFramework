@@ -11,9 +11,11 @@ require_once "../app/routes.php";
 ini_set("error_log", __DIR__ . "/../logs/error.log");
 error_reporting(E_ALL);
 ini_set("display_errors", 0);
+Tracy\Debugger::enable(Tracy\Debugger::PRODUCTION);
 
 if ($config["env"] == "dev") {
     ini_set("display_errors", 1);
+    Tracy\Debugger::enable(Tracy\Debugger::DEVELOPMENT);
 }
 
 $uri = $_SERVER["REQUEST_URI"];
