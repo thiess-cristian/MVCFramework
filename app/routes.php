@@ -9,4 +9,5 @@ $routes=[
 
     '/user/{id}'=>['controller'=>'PageController',
                     'action'   =>'userAction'],
+                    'guard'    =>"Authenticated",
 ];

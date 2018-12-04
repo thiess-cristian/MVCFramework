@@ -25,10 +25,21 @@ class Router
 
         //require_once ("../app/Controllers/".$controller.".php");
 
+        $this->checkGuard($uri);
+
         $className='App\\Controllers\\'.$controller;
         $controllerObj = new $className();
         $action = $this->routes[$uri]['action'];
         $controllerObj->{$action}($params);
     }
+
+    private function checkGuard(string $route){
+        if (isset($this->routes[$route]['guard'])) {
+            $guard = "\\App\\Guards\\" . $this->routes[$route]['guard'];
+            //instantiate and execute the handle action
+            (new $guard)->handle();
+	    }
+    }
+
 
 }
