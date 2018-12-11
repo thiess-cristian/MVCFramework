@@ -5,22 +5,24 @@ namespace Framework;
 use \PDO;
 use App\Config;
 
-abstract  class Model{
+abstract class Model
+{
 
-    protected  $table;
+    protected $table;
 
-    public function newDbCon($resultAsArray=false){
+    public function newDbCon($resultAsArray = false): PDO
+    {
 
         $dsn = Config::DB['driver'];
-        $dsn .= ":host=".Config::DB['host'];
-        $dsn .= ";dbname=".Config::DB['dbname'];
-        $dsn .= ";port=".Config::DB['port'];
-        $dsn .= ";charset=".Config::DB['charset'];
+        $dsn .= ":host=" . Config::DB['host'];
+        $dsn .= ";dbname=" . Config::DB['dbname'];
+        $dsn .= ";port=" . Config::DB['port'];
+        $dsn .= ";charset=" . Config::DB['charset'];
 
         $options = [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-            PDO::ATTR_EMULATE_PREPARES   => false,
+            PDO::ATTR_EMULATE_PREPARES => false,
         ];
 
         if ($resultAsArray) {
@@ -45,7 +47,7 @@ abstract  class Model{
     /**
      *Return data with specified id/index
      */
-    public function get($id)
+    public function get($id): string
     {
         $db = $this->newDbCon();
         $stmt = $db->prepare("SELECT * from $this->table where id=?");
@@ -78,7 +80,7 @@ abstract  class Model{
     /**
      *Find data with values
      */
-    public Function find(array $data)
+    public Function find(array $data): string
     {
         list($columns, $values) = $this->prepareDataForStmt($data);
         $db = $this->newDbCon();
@@ -89,21 +91,21 @@ abstract  class Model{
     /**
      *Insert new data in table
      */
-    public function new(array $data)
+    public function new(array $data): void
     {
     }
 
     /**
      *Update data in table
      */
-    public function update(array $data)
+    public function update(array $data): void
     {
     }
 
     /**
      *delete data from table
      */
-    public function delete($id)
+    public function delete($id): void
     {
     }
 }

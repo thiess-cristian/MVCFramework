@@ -1,12 +1,10 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Framework\Router;
 use App\Config;
 
-require_once "../app/Config.php";
-require_once "../src/Router.php";
 require_once "../app/routes.php";
 
 ini_set("error_log", __DIR__ . "/../logs/error.log");
@@ -24,4 +22,4 @@ $query = $_SERVER["QUERY_STRING"];
 
 $router = new Router($routes);
 
-$router->callAction($uri,$query);
+$router->callAction($uri, $query);

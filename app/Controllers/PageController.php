@@ -9,18 +9,23 @@ class PageController
 
     }
 
-    public  function indexAction(array $params):void{
+    public function indexAction(array $params): void
+    {
         echo "index";
     }
 
-    public function aboutUsAction(array $params):void{
+    public function aboutUsAction(array $params): void
+    {
         echo "about page";
     }
 
-    public function userAction(array $params):void{
-        echo "user ".$params[0];
+    public function userAction(array $params): void
+    {
+        echo "user " . $params[0];
     }
 
-
-
+    public function notFound(array $params): void
+    {
+        echo "404";
+    }
 }

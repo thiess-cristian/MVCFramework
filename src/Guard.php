@@ -6,7 +6,8 @@ namespace Framework;
 interface Guard
 {
     //this function will contain the “guarding” logic
-    function handle(array $params = null);
+    function handle(array $params = null): void;
+
     //this function will be called when the guarding check fails and will contain the logic to be executed in such a case
-    function reject();
+    function reject(): void;
 }

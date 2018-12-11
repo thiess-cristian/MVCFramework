@@ -8,6 +8,8 @@ $routes=[
               'action'     =>'aboutUsAction'],
 
     '/user/{id}'=>['controller'=>'PageController',
-                    'action'   =>'userAction'],
-                    'guard'    =>"Authenticated",
+                    'action'   =>'userAction',
+                    'guard'    =>'Authenticated'],
+    '/404'=>['controller'=>'PageController',
+                'action'=>'notFound',],
 ];
