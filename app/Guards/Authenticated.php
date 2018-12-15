@@ -6,7 +6,7 @@ use Framework\Guard;
 
 class Authenticated implements Guard
 {
-    public function handle(array $params = null)
+    public function handle(array $params = null):void
     {
         session_start();
         if (!isset($_SESSION['username'])) {
@@ -14,8 +14,8 @@ class Authenticated implements Guard
         }
     }
 
-    public function reject()
+    public function reject():void
     {
-        header("Location: /auth/login");
+        header("Location: /login");
     }
 }

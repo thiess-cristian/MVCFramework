@@ -1,0 +1,32 @@
+{% extends "ForumTemplate.html" %}
+
+{% block title %}Login{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="col-lg-4">
+            <div class="jumbotron" style="margin-top:150px">
+                <h3>Login</h3>
+                <form action="/login_user" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" name="username" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="pass" required
+                               minlenght=6/>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-control">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+{% endblock %}

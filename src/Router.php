@@ -24,12 +24,7 @@ class Router
         if(!isset($this->routes[$uri])){
             $uri='/404';
         }
-
         $controller = $this->routes[$uri]['controller'];
-
-        //require_once ("../app/Controllers/".$controller.".php");
-
-
 
         $this->checkGuard($uri);
 

@@ -30,7 +30,7 @@ abstract class Model
         }
 
         try {
-            return new PDO($dsn, Config['db']['user'], Config['db']['pass'], $options);
+            return new PDO($dsn, Config::DB['user'], Config::DB['pass'], $options);
         } catch (\PDOException $e) {
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
