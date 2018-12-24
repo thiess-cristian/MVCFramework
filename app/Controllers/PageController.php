@@ -7,7 +7,7 @@ class PageController extends Controller
 {
     public function indexAction(array $params): void
     {
-        $this->view("Index.twig",$params);
+        $this->view("Index.html.twig",$params);
     }
 
     public function aboutUsAction(array $params): void
@@ -27,12 +27,12 @@ class PageController extends Controller
 
     public function showRegister(array $params): void
     {
-        $this->view("Register.twig",$params);
+        $this->view("Register.html.twig",$params);
     }
 
     public function showLogin(array $params): void
     {
-        $this->view("Login.twig",$params);
+        $this->view("User/Login.html.twig",$params);
     }
 
 }

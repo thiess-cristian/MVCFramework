@@ -1,0 +1,16 @@
+{% extends "ForumTemplate.html.twig" %}
+
+{% block title %}Forum{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <h1>Categories </h1>
+
+    {% for value in params %}
+        <a href=/category/{{ value.id }}> {{ value.name }}</a>
+        <br>
+    {% endfor %}
+
+{% endblock %}

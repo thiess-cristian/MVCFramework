@@ -7,7 +7,7 @@ use \PDO;
 
 class User extends Model
 {
-    protected $table = "users";
+    protected $table = "user_account";
 
     public function checkUsername(string $username): bool
     {

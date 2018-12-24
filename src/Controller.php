@@ -19,8 +19,8 @@ class Controller
 
     }
 
-    public function view(string $viewFile, array $params = []): void
+    public function view(string $viewFile, array $params): void
     {
-        echo $this->twig->render($viewFile, $params);
+        echo $this->twig->render($viewFile,array('params'=>$params));
     }
 }

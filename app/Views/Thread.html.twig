@@ -1,0 +1,22 @@
+{% extends "ForumTemplate.html.twig" %}
+
+{% block title %}Forum{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <h1>{{ params.subject }}</h1>
+    {% for value in params.posts %}
+        {{ value.content }}
+        {{ value.name }}
+        {{ value.created }}
+        <br>
+    {% endfor %}
+
+    <form action="post_reply">
+        <textarea></textarea>
+        <br>
+        <input type="submit"></input>
+    </form>
+{% endblock %}

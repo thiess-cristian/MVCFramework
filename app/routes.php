@@ -1,8 +1,8 @@
 <?php
 
 $routes=[
-    '/'=>['controller'=>'PageController',
-          'action'    =>'indexAction'],
+    '/'=>['controller'=>'CategoriesController',
+          'action'    =>'showCategories'],
 
     '/about'=>['controller'=>'PageController',
               'action'     =>'aboutUsAction'],
@@ -27,4 +27,10 @@ $routes=[
 
     '/login_user'=>['controller'=>'AccountController',
                     'action'=>'loginUser'],
+
+    '/category/{id}'=>['controller'=>'CategoryController',
+                       'action'=>'showCategory'],
+
+    '/thread/{id}'=>['controller'=>'ThreadController',
+                     'action'=>'showThread'],
 ];
