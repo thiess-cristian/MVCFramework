@@ -15,7 +15,7 @@ class Thread extends Model
               where p.thread_id=?";
 
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$params[0]]);
+        $stmt->execute([$params['id']]);
 
         $data=$stmt->fetchAll();
 
@@ -28,10 +28,32 @@ class Thread extends Model
         $sql="select subject from thread where id=?";
 
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$params[0]]);
+        $stmt->execute([$params['id']]);
 
         $data=$stmt->fetch(PDO::FETCH_ASSOC);
 
         return $data;
     }
+
+    public function createThread(String $subject,String $text,String $categoryId){
+        $pdo=$this->newDbCon();
+
+        $sql="insert into thread(subject,user_account_id,category_id) values(?,?,?)";
+
+        $stmt=$pdo->prepare($sql);
+
+        session_start();
+        $userId=$_SESSION['uid'];
+
+        $stmt->execute([$subject,$userId,$categoryId]);
+
+        $threadId=$pdo->lastInsertId();
+
+        $post=new Post();
+        $post->createPost($text, $threadId, $userId);
+
+        return  $threadId;
+    }
+
+
 }

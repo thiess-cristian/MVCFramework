@@ -33,4 +33,19 @@ $routes=[
 
     '/thread/{id}'=>['controller'=>'ThreadController',
                      'action'=>'showThread'],
+
+    '/post_reply'=>['controller'=>'ThreadController',
+                    'action'=>'postReply'],
+
+    '/logout'=>['controller'=>'AccountController',
+                'action'=>'logoutUser'],
+
+    '/post_thread'=>['controller'=>'CategoryController',
+                     'action'=>'showThreadCreator'],
+
+    '/create_thread'=>['controller'=>'CategoryController',
+                        'action'=>'createThread'],
+
+    '/reply'=>['controller'=>'ThreadController',
+               'action'=>'addReplyText'],
 ];

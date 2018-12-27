@@ -1,0 +1,17 @@
+{% extends "ForumTemplate.html.twig" %}
+
+{% block title %}Forum{% endblock %}
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+{% block content %}
+
+    <form action="/create_thread?{{ params.category_id }}" method="POST" id="post">
+        title<br>
+        <input type="text" name="subject"><br>
+        <textarea form="post" name="content"></textarea>
+        <br>
+        <input type="submit">
+    </form>
+
+{% endblock %}

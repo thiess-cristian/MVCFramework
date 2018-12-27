@@ -17,7 +17,7 @@ class Category extends Model
               where t.category_id=?";
 
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$params[0]]);
+        $stmt->execute([$params['id']]);
 
         $data=$stmt->fetchAll();
 
@@ -30,8 +30,7 @@ class Category extends Model
         $sql="select name from category where id=?";
 
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$params[0]]);
-
+        $stmt->execute([$params['id']]);
         $data=$stmt->fetch(PDO::FETCH_ASSOC);
 
         return $data;

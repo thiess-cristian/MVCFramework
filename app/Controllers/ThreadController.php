@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 
+use App\Models\Post;
 use App\Models\Thread;
 use Framework\Controller;
 
@@ -15,10 +16,44 @@ class ThreadController extends Controller
 
         $subject=$thread->getThreadSubject($params);
 
-
         $data['posts']=$posts;
         $data['subject']=$subject['subject'];
+        $data['thread_id']=$params['id'];
 
         $this->view('/Thread.html.twig',$data);
+    }
+
+    public function postReply(array $params){
+        $content=$_POST['content'];
+
+        $split_query=null;
+        if (isset($params['query'])) {
+            parse_str($params['query'], $split_query);
+        }
+
+        session_start();
+        $userId=$_SESSION['uid'];
+
+        $post=new Post();
+
+        $post->createPost($content,$split_query['thread_id'],$userId);
+
+        header("Location:/thread/".$split_query['thread_id']);
+    }
+
+
+    public function addReplyText(array $params){
+
+        $post=new Post();
+
+        $split_query=null;
+        if (isset($params['query'])) {
+            parse_str($params['query'], $split_query);
+        }
+        $replyContent=$post->getPost($split_query['id']);
+
+        $params['reply_content']=$replyContent['content'];
+        $this->view('/Thread.html.twig',$params);
+       // header("Location:/thread/".$split_query['thread_id']);
     }
 }

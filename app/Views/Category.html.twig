@@ -7,6 +7,11 @@
 {% block content %}
 
     <h1>{{ params.category_name }}</h1>
+
+    {% if params.username %}
+        <a href="/post_thread?cat={{ params.category_id }}">Post thread</a><br>
+    {% endif %}
+
     {% for value in params.threads %}
         <a href=/thread/{{ value.id }} >{{ value.subject }}</a>
         {{ value.name }}

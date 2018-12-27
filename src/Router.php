@@ -18,8 +18,9 @@ class Router
 
             preg_match('/\d+/', $_SERVER['REQUEST_URI'], $id);
             $uri = preg_replace('/\d+/', '{id}', $_SERVER['REQUEST_URI']);
-            $params[0] = $id[0];
+            $params['id'] = $id[0];
         }
+        $params['query']=$query;
 
         if(!isset($this->routes[$uri])){
             $uri='/404';

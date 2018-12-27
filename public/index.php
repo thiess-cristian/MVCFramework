@@ -17,7 +17,7 @@ if (Config::ENV == "dev") {
     Tracy\Debugger::enable(Tracy\Debugger::DEVELOPMENT);
 }
 
-$uri = $_SERVER["REQUEST_URI"];
+$uri=strtok($_SERVER["REQUEST_URI"],'?');
 $query = $_SERVER["QUERY_STRING"];
 
 $router = new Router($routes);

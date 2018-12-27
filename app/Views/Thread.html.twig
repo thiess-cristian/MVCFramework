@@ -5,18 +5,21 @@
     {{ parent() }}
 {% endblock %}
 {% block content %}
-
     <h1>{{ params.subject }}</h1>
+    <hr>
     {% for value in params.posts %}
         {{ value.content }}
         {{ value.name }}
         {{ value.created }}
+
+        <a href="/reply?id={{ value.id }}&thread_id={{params.thread_id }}">Reply</a>
         <br>
+        <hr>
     {% endfor %}
 
-    <form action="post_reply">
-        <textarea></textarea>
+    <form action="/post_reply?thread_id={{ params.thread_id }}" method="POST" id="post">
+        <textarea form="post" name="content">{{ params.reply_content }}</textarea>
         <br>
-        <input type="submit"></input>
+        <input type="submit">
     </form>
 {% endblock %}

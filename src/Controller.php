@@ -21,6 +21,8 @@ class Controller
 
     public function view(string $viewFile, array $params): void
     {
+        session_start();
+        $params['username']=$_SESSION['username'];
         echo $this->twig->render($viewFile,array('params'=>$params));
     }
 }
