@@ -48,4 +48,7 @@ $routes=[
 
     '/reply'=>['controller'=>'ThreadController',
                'action'=>'addReplyText'],
+
+    '/user_page/{id}'=>['controller'=>'UserPageController',
+                        'action'=>'showUserPage'],
 ];

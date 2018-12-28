@@ -23,6 +23,7 @@ class Controller
     {
         session_start();
         $params['username']=$_SESSION['username'];
+        $params['uid']=$_SESSION['uid'];
         echo $this->twig->render($viewFile,array('params'=>$params));
     }
 }

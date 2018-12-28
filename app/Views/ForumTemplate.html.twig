@@ -18,10 +18,12 @@
 
 {% if params.username %}
     <a href="/logout">logout</a>
-    hello {{ params.username }}
+    <a href="/user_page/{{ params.uid }}"> {{ params.username }}</a>
+    {% set logged = "true" %}
 {% else %}
     <a href="/login"> login</a>
     <a href="/register">register</a>
+    {% set logged = "false" %}
 {% endif %}
 
 <div id="content">{% block content %}{% endblock %}</div>

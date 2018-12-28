@@ -55,5 +55,18 @@ class Thread extends Model
         return  $threadId;
     }
 
+    public function getThreads(String $userID){
+        $pdo=$this->newDbCon();
+
+        $sql="select * from thread where user_account_id=?";
+
+        $stmt=$pdo->prepare($sql);
+
+        $stmt->execute([$userID]);
+
+        $data=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
 
 }

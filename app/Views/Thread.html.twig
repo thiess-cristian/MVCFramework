@@ -1,6 +1,6 @@
 {% extends "ForumTemplate.html.twig" %}
 
-{% block title %}Forum{% endblock %}
+{% block title %}{{ params.subject }}{% endblock %}
 {% block head %}
     {{ parent() }}
 {% endblock %}
@@ -12,14 +12,18 @@
         {{ value.name }}
         {{ value.created }}
 
-        <a href="/reply?id={{ value.id }}&thread_id={{params.thread_id }}">Reply</a>
+        {% if logged=="true" %}
+            <a href="/reply?id={{ value.id }}&thread_id={{params.thread_id }}">Reply</a>
+        {% endif %}
         <br>
         <hr>
     {% endfor %}
 
-    <form action="/post_reply?thread_id={{ params.thread_id }}" method="POST" id="post">
-        <textarea form="post" name="content">{{ params.reply_content }}</textarea>
-        <br>
-        <input type="submit">
-    </form>
+    {% if logged == "true" %}
+        <form action="/post_reply?thread_id={{ params.thread_id }}" method="POST" id="post">
+            <textarea form="post" name="content">{{ params.reply_content }}</textarea>
+            <br>
+            <input type="submit">
+        </form>
+    {% endif %}
 {% endblock %}
