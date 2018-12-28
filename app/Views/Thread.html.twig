@@ -13,17 +13,17 @@
         {{ value.created }}
 
         {% if logged=="true" %}
-            <a href="/reply?id={{ value.id }}&thread_id={{params.thread_id }}">Reply</a>
+            <a href="/reply?id={{ value.id }}&thread_id={{params.thread_id }}" class="btn btn-primary">Reply</a>
         {% endif %}
         <br>
         <hr>
     {% endfor %}
 
     {% if logged == "true" %}
-        <form action="/post_reply?thread_id={{ params.thread_id }}" method="POST" id="post">
-            <textarea form="post" name="content">{{ params.reply_content }}</textarea>
+        <form action="/post_reply?thread_id={{ params.thread_id }}" method="POST" id="post" class="form-group">
+            <textarea form="post" name="content" rows="5" class="form-control">{{ params.reply_content }}</textarea>
             <br>
-            <input type="submit">
+            <input type="submit" class="btn btn-primary">
         </form>
     {% endif %}
 {% endblock %}

@@ -6,12 +6,12 @@
 {% endblock %}
 {% block content %}
 
-    <form action="/create_thread?{{ params.category_id }}" method="POST" id="post">
-        title<br>
-        <input type="text" name="subject"><br>
-        <textarea form="post" name="content"></textarea>
+    <form action="/create_thread?{{ params.category_id }}" method="POST" id="post" class="form-group">
+        <label for="title" ><h3>Title</h3></label>
+        <input type="text" name="subject" class="form-control form-control-lg" id="title"><br>
+        <textarea form="post" name="content" rows="5" class="form-control"></textarea>
         <br>
-        <input type="submit">
+        <input type="submit"  class="btn btn-primary">
     </form>
 
 {% endblock %}

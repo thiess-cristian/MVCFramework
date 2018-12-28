@@ -9,9 +9,14 @@
 <h1>User: {{ params.username }} info</h1>
 <h2>Threads created</h2>
     {% for value in params.threads %}
-        <a href=/thread/{{ value.id }} >{{ value.subject }}</a>
-        {{ value.created }}
-        <br>
+        <div class="row">
+            <div class="col ">
+                 <a href=/thread/{{ value.id }} >{{ value.subject }}</a>
+            </div>
+            <div class="col">
+                {{ value.created }}
+            </div>
+        </div>
     {% endfor %}
 
 {% endblock %}
