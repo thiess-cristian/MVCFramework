@@ -3,44 +3,45 @@
 <head>
     <title>{% block title %}{% endblock %} - Forum</title>
     {% block head %}
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/ForumTemplateStyle.css">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Login</title>
+        <link rel="stylesheet" type="text/css"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/ForumTemplateStyle.css">
     {% endblock %}
 </head>
 <body>
 
 <div class="container">
-<div class="jumbotron">
-<h1 align="center">Forum</h1>
-    <div class="d-flex justify-content-start">
-        <a href="/" class="btn btn-primary">home</a>
-    </div>
-    <div class="d-flex justify-content-end">
-        {% if params.username %}
-            <a href="/logout" class="btn btn-danger" role="button">logout</a>
-            <a href="/user_page/{{ params.uid }}" class="btn btn-primary"> {{ params.username }}</a>
-            {% set logged = "true" %}
-        {% else %}
-            <a href="/login" class="btn btn-success"> login</a>
-            <a href="/register" class="btn btn-primary">register</a>
-            {% set logged = "false" %}
-        {% endif %}
-    </div>
-<hr>
-<div id="content">
-    {% block content %}{% endblock %}
-</div>
-<div id="footer">
-    {% block footer %}
+    <div class="jumbotron">
+        <h1 align="center">Forum</h1>
+        <div class="d-flex justify-content-start">
+            <a href="/" class="btn btn-primary">home</a>
+        </div>
+        <div class="d-flex justify-content-end">
+            {% if params.username %}
+                <a href="/logout" class="btn btn-danger" role="button">logout</a>
+                <a href="/user_page/{{ params.uid }}" class="btn btn-primary"> {{ params.username }}</a>
+                {% set logged = "true" %}
+            {% else %}
+                <a href="/login" class="btn btn-success"> login</a>
+                <a href="/register" class="btn btn-primary">register</a>
+                {% set logged = "false" %}
+            {% endif %}
+        </div>
+        <hr>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="footer">
+            {% block footer %}
 
-    {% endblock %}
+            {% endblock %}
 
-</div>
-</div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

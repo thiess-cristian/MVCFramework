@@ -15,13 +15,14 @@ use Framework\Controller;
 
 class UserPageController extends Controller
 {
-    public function showUserPage(array $params){
-        $user=new User();
-        $pdo=$user->newDbCon();
+    public function showUserPage(array $params)
+    {
+        $user = new User();
+        $pdo = $user->newDbCon();
 
-        $thread=new Thread();
-        $threads=$thread->getThreads($params['id']);
-        $params['threads']=$threads;
-        $this->view("UserPage.html.twig",$params);
+        $thread = new Thread();
+        $threads = $thread->getThreads($params['id']);
+        $params['threads'] = $threads;
+        $this->view("UserPage.html.twig", $params);
     }
 }

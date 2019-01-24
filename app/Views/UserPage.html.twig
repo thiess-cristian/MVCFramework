@@ -6,17 +6,25 @@
 {% endblock %}
 {% block content %}
 
-<h1>User: {{ params.username }} info</h1>
-<h2>Threads created</h2>
+    <h2>User: {{ params.username }} info</h2>
+    <h3>Threads created</h3>
     {% for value in params.threads %}
         <div class="row">
-            <div class="col ">
-                 <a href=/thread/{{ value.id }} >{{ value.subject }}</a>
-            </div>
-            <div class="col">
-                {{ value.created }}
+            <div class="col-lg-11">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <a href=/thread/{{ value.id }} >{{ value.subject }}</a>
+                        </div>
+                        <div class="card-subtitle mb-2 text-muted">
+                            Posted on:{{ value.created }}
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+        <hr>
     {% endfor %}
 
 {% endblock %}

@@ -9,12 +9,13 @@ use Framework\Controller;
 class CategoriesController extends Controller
 {
 
-    public function showCategories(array $params){
-        $categories=new Categories();
+    public function showCategories(array $params)
+    {
+        $categories = new Categories();
 
-        $data=$categories->getCategories();
+        $data = $categories->getCategories();
 
-        $this->view("Index.html.twig",$data);
+        $this->view("Index.html.twig", $data);
     }
 
 }

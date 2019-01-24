@@ -9,51 +9,54 @@ use Framework\Controller;
 
 class ThreadController extends Controller
 {
-    public function showThread(array $params){
-        $thread=new Thread();
+    public function showThread(array $params)
+    {
+        $thread = new Thread();
 
-        $posts=$thread->getPosts($params);
+        $posts = $thread->getPosts($params);
 
-        $subject=$thread->getThreadSubject($params);
+        $subject = $thread->getThreadSubject($params);
 
-        $data['posts']=$posts;
-        $data['subject']=$subject['subject'];
-        $data['thread_id']=$params['id'];
+        $data['posts'] = $posts;
+        $data['subject'] = $subject['subject'];
+        $data['thread_id'] = $params['id'];
 
-        $this->view('/Thread.html.twig',$data);
+        $this->view('/Thread.html.twig', $data);
     }
 
-    public function postReply(array $params){
-        $content=$_POST['content'];
+    public function postReply(array $params)
+    {
+        $content = $_POST['content'];
 
-        $split_query=null;
+        $split_query = null;
         if (isset($params['query'])) {
             parse_str($params['query'], $split_query);
         }
 
         session_start();
-        $userId=$_SESSION['uid'];
+        $userId = $_SESSION['uid'];
 
-        $post=new Post();
+        $post = new Post();
 
-        $post->createPost($content,$split_query['thread_id'],$userId);
+        $post->createPost($content, $split_query['thread_id'], $userId);
 
-        header("Location:/thread/".$split_query['thread_id']);
+        header("Location:/thread/" . $split_query['thread_id']);
     }
 
 
-    public function addReplyText(array $params){
+    public function addReplyText(array $params)
+    {
 
-        $post=new Post();
+        $post = new Post();
 
-        $split_query=null;
+        $split_query = null;
         if (isset($params['query'])) {
             parse_str($params['query'], $split_query);
         }
-        $replyContent=$post->getPost($split_query['id']);
+        $replyContent = $post->getPost($split_query['id']);
 
-        $params['reply_content']=$replyContent['content'];
-        $this->view('/Thread.html.twig',$params);
-       // header("Location:/thread/".$split_query['thread_id']);
+        $params['reply_content'] = $replyContent['content'];
+        $this->view('/Thread.html.twig', $params);
+        // header("Location:/thread/".$split_query['thread_id']);
     }
 }

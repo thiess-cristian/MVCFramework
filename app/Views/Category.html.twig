@@ -14,14 +14,19 @@
     <br>
     {% for value in params.threads %}
         <div class="row">
-            <div class="col ">
-                <a href="/thread/{{ value.id }}">{{ value.subject }}</a>
-            </div>
-            <div class="col">
-                {{ value.name }}
-            </div>
-            <div class="col">
-                {{ value.created }}
+            <div class="col-lg-11">
+                <div class="card">
+
+                    <div class="card-title">
+                        <a href="/thread/{{ value.id }}">{{ value.subject }}</a>
+                    </div>
+
+                    <div class="card-subtitle mb-2 text-muted">
+                        created by {{ value.name }} on {{ value.created }}
+                    </div>
+
+
+                </div>
             </div>
         </div>
         <hr>

@@ -20,10 +20,10 @@ class Router
             $uri = preg_replace('/\d+/', '{id}', $_SERVER['REQUEST_URI']);
             $params['id'] = $id[0];
         }
-        $params['query']=$query;
+        $params['query'] = $query;
 
-        if(!isset($this->routes[$uri])){
-            $uri='/404';
+        if (!isset($this->routes[$uri])) {
+            $uri = '/404';
         }
         $controller = $this->routes[$uri]['controller'];
 

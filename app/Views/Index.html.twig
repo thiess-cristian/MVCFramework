@@ -7,12 +7,12 @@
 {% block content %}
 
     <h1>Categories </h1>
-<ul class="list-group">
-    {% for value in params %}
-        <li class="list-group-item">
-        <a href=/category/{{ value.id }}> {{ value.name }}</a>
-        </li>
-    {% endfor %}
-</ul>
+    <ul class="list-group">
+        {% for value in params %}
+            <li class="list-group-item">
+                <a href=/category/{{ value.id }}> {{ value.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

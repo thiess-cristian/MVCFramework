@@ -9,9 +9,9 @@
     <script type="text/javascript">
         function replyClicked() {
             let replyContent = document.getElementById('content');
-            let textArea=document.getElementById('fromText');
+            let textArea = document.getElementById('fromText');
 
-            textArea.value+=replyContent;
+            textArea.value += replyContent;
             alert("replyContent");
         }
     </script>
@@ -23,25 +23,36 @@
     <h1>{{ params.subject }}</h1>
     <hr>
     {% for value in params.posts %}
-        <div id="content">
-            {{ value.content }}
+        <div class="row">
+
+            <div class="col-lg-11">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <strong>{{ value.name }}</strong> <span class="text-muted"> posted on {{ value.created }}
+                                :</span>
+                        </div>
+                        <div class="card-text">
+                            {{ value.content }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if logged=="true" %}
+                <a href="/reply?id={{ value.id }}&thread_id={{ params.thread_id }}" class="btn btn-primary"
+                   style="height: 40px">Reply</a>
+
+                <!-- <input type="button" onclick="replyClicked()" value="Reply" class="btn btn-primary> -->
+            {% endif %}
         </div>
-        {{ value.name }}
-        {{ value.created }}
-
-        {% if logged=="true" %}
-            <!--<a href="/reply?id={{ value.id }}&thread_id={{params.thread_id }}" class="btn btn-primary">Reply</a>
-            -->
-
-        {% endif %}
-            <input id="reply" type="button" value="Reply" onclick="replyClicked()"/>
-        <br>
         <hr>
     {% endfor %}
 
     {% if logged == "true" %}
         <form action="/post_reply?thread_id={{ params.thread_id }}" method="POST" id="post" class="form-group">
-            <textarea id="formText" form="post" name="content" rows="5" class="form-control">{{ params.reply_content }}</textarea>
+            <textarea id="formText" form="post" name="content" rows="5"
+                      class="form-control">{{ params.reply_content }}</textarea>
             <br>
             <input type="submit" class="btn btn-primary">
         </form>
