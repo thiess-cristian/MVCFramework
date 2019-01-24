@@ -9,13 +9,14 @@ class Controller
     public function __construct()
     {
         $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../app/Views');
-        /*
-        $this->twig = new \Twig_Environment($loader, array(
-            'cache' => __DIR__ . '/../storage/cache/views',
-        ));
-        */
 
-        $this->twig = new \Twig_Environment($loader);
+        $this->twig = new \Twig_Environment($loader, array(
+        //    'cache' => __DIR__ . '/../storage/cache/views',
+            "cache"=>false
+        ));
+
+
+       // $this->twig = new \Twig_Environment($loader);
 
     }
 

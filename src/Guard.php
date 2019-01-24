@@ -9,5 +9,5 @@ interface Guard
     function handle(array $params = null): void;
 
     //this function will be called when the guarding check fails and will contain the logic to be executed in such a case
-    function reject(): void;
+    function reject();
 }

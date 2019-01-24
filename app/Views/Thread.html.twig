@@ -4,26 +4,47 @@
 {% block head %}
     {{ parent() }}
 {% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        function replyClicked() {
+            let replyContent = document.getElementById('content');
+            let textArea=document.getElementById('fromText');
+
+            textArea.value+=replyContent;
+            alert("replyContent");
+        }
+    </script>
+{% endblock %}
+
 {% block content %}
+
+
     <h1>{{ params.subject }}</h1>
     <hr>
     {% for value in params.posts %}
-        {{ value.content }}
+        <div id="content">
+            {{ value.content }}
+        </div>
         {{ value.name }}
         {{ value.created }}
 
         {% if logged=="true" %}
-            <a href="/reply?id={{ value.id }}&thread_id={{params.thread_id }}" class="btn btn-primary">Reply</a>
+            <!--<a href="/reply?id={{ value.id }}&thread_id={{params.thread_id }}" class="btn btn-primary">Reply</a>
+            -->
+
         {% endif %}
+            <input id="reply" type="button" value="Reply" onclick="replyClicked()"/>
         <br>
         <hr>
     {% endfor %}
 
     {% if logged == "true" %}
         <form action="/post_reply?thread_id={{ params.thread_id }}" method="POST" id="post" class="form-group">
-            <textarea form="post" name="content" rows="5" class="form-control">{{ params.reply_content }}</textarea>
+            <textarea id="formText" form="post" name="content" rows="5" class="form-control">{{ params.reply_content }}</textarea>
             <br>
             <input type="submit" class="btn btn-primary">
         </form>
     {% endif %}
 {% endblock %}
+

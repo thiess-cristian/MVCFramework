@@ -26,7 +26,8 @@ $routes=[
                         'action'=>'registerUser'],
 
     '/login_user'=>['controller'=>'AccountController',
-                    'action'=>'loginUser'],
+                    'action'=>'loginUser',
+                    'guard'=>'FormGuard'],
 
     '/category/{id}'=>['controller'=>'CategoryController',
                        'action'=>'showCategory'],
