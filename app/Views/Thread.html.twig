@@ -5,34 +5,25 @@
     {{ parent() }}
 {% endblock %}
 
-{% block script %}
-    <script type="text/javascript">
-        function replyClicked() {
-            let replyContent = document.getElementById('content');
-            let textArea = document.getElementById('fromText');
 
-            textArea.value += replyContent;
-            alert("replyContent");
-        }
-    </script>
-{% endblock %}
 
 {% block content %}
 
 
     <h1>{{ params.subject }}</h1>
     <hr>
+    {%  set id=0 %}
     {% for value in params.posts %}
         <div class="row">
 
             <div class="col-lg-11">
                 <div class="card ">
                     <div class="card-body">
-                        <div class="card-title">
-                            <strong>{{ value.name }}</strong> <span class="text-muted"> posted on {{ value.created }}
+                        <div class="card-title" >
+                            <strong id="name{{ id }}">{{ value.name }}</strong> <span class="text-muted"> posted on {{ value.created }}
                                 :</span>
                         </div>
-                        <div class="card-text">
+                        <div class="card-text" id="content{{ id }}">
                             {{ value.content }}
 
                         </div>
@@ -40,13 +31,14 @@
                 </div>
             </div>
             {% if logged=="true" %}
-                <a href="/reply?id={{ value.id }}&thread_id={{ params.thread_id }}" class="btn btn-primary"
+                <!--<a href="/reply?id={{ value.id }}&thread_id={{ params.thread_id }}" class="btn btn-primary"
                    style="height: 40px">Reply</a>
-
-                <!-- <input type="button" onclick="replyClicked()" value="Reply" class="btn btn-primary> -->
+                -->
+                 <input id="button{{ id }}" type="button" onclick="replyClicked({{ id }});" value="Reply" class="btn btn-primary" style="height: 40px">
             {% endif %}
         </div>
         <hr>
+        {%  set id=id+1 %}
     {% endfor %}
 
     {% if logged == "true" %}
@@ -57,5 +49,18 @@
             <input type="submit" class="btn btn-primary">
         </form>
     {% endif %}
+
+
+    <script type="text/javascript">
+        function replyClicked(id) {
+            let replyContent = document.getElementById("content"+id);
+            let textArea = document.getElementById('formText');
+            let username=document.getElementById("name"+id);
+
+            textArea.textContent+="reply to what "+username.textContent+" said:";
+            textArea.textContent += replyContent.textContent+"\n";
+        }
+    </script>
+
 {% endblock %}
 
