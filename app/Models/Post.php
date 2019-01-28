@@ -7,6 +7,9 @@ use Framework\Model;
 
 class Post extends Model
 {
+
+    protected $table="post";
+
     public function createPost(String $text,String $threadId,String $userId){
 
         $pdo=$this->newDbCon();

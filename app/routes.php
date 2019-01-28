@@ -52,4 +52,12 @@ $routes=[
 
     '/user_page/{id}'=>['controller'=>'UserPageController',
                         'action'=>'showUserPage'],
+
+    '/thread/delete_post'=>['controller'=>'ThreadController',
+                        'action'=>'deletePost'],
+
+    '/thread/delete_thread'=>['controller'=>'ThreadController',
+                            'action'=>'deleteThread'],
+
+
 ];

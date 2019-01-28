@@ -21,6 +21,7 @@ class ThreadController extends Controller
         $data['subject'] = $subject['subject'];
         $data['thread_id'] = $params['id'];
 
+
         $this->view('/Thread.html.twig', $data);
     }
 
@@ -58,5 +59,31 @@ class ThreadController extends Controller
         $params['reply_content'] = $replyContent['content'];
         $this->view('/Thread.html.twig', $params);
         // header("Location:/thread/".$split_query['thread_id']);
+    }
+
+    public function deletePost(array $params){
+        $post =new Post();
+
+        $split_query = null;
+        if (isset($params['query'])) {
+            parse_str($params['query'], $split_query);
+        }
+
+        $post->delete($split_query['id']);
+
+        header("Location:/thread/" . $split_query['thread_id']);
+    }
+
+    public function deleteThread(array $params){
+        $thread=new Thread();
+
+        $split_query = null;
+        if (isset($params['query'])) {
+            parse_str($params['query'], $split_query);
+        }
+
+        $thread->delete($split_query['thread_id']);
+
+        header("Location:/");
     }
 }

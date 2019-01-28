@@ -7,10 +7,13 @@ use \PDO;
 
 class Thread extends Model
 {
+
+    protected $table="thread";
+
     public function getPosts(array $params){
         $pdo = $this->newDbCon();
 
-        $sql="select p.id,p.content,p.created,u.name
+        $sql="select p.id,p.content,p.created,u.name,p.user_account_id
               from post p join user_account u on p.user_account_id=u.id
               where p.thread_id=?";
 

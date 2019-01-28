@@ -21,15 +21,17 @@
             <a href="/" class="btn btn-primary">home</a>
         </div>
         <div class="d-flex justify-content-end">
-            {% if params.username %}
-                <a href="/logout" class="btn btn-danger" role="button">logout</a>
-                <a href="/user_page/{{ params.uid }}" class="btn btn-primary"> {{ params.username }}</a>
-                {% set logged = "true" %}
-            {% else %}
-                <a href="/login" class="btn btn-success"> login</a>
-                <a href="/register" class="btn btn-primary">register</a>
-                {% set logged = "false" %}
-            {% endif %}
+            <div class="btn-group">
+                {% if params.username %}
+                    <a href="/logout" class="btn btn-danger" role="button">logout</a>
+                    <a href="/user_page/{{ params.uid }}" class="btn btn-primary"> {{ params.username }}</a>
+                    {% set logged = "true" %}
+                {% else %}
+                    <a href="/login" class="btn btn-success"> login</a>
+                    <a href="/register" class="btn btn-primary">register</a>
+                    {% set logged = "false" %}
+                {% endif %}
+            </div>
         </div>
         <hr>
         <div id="content">

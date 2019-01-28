@@ -105,7 +105,10 @@ abstract class Model
     /**
      *delete data from table
      */
-    public function delete($id): void
+    public function delete($id): bool
     {
+        $db = $this->newDbCon();
+        $stmt = $db->prepare('delete from ' . $this->table . ' where id=?');
+        return $stmt->execute([$id]);
     }
 }
