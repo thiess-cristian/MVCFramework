@@ -99,4 +99,17 @@ class ThreadController extends Controller
 
         header("Location:/thread/" . $split_query['thread_id']);
     }
+
+    public function votePost(array $params){
+        $post =new Post();
+
+        $split_query = null;
+        if (isset($params['query'])) {
+            parse_str($params['query'], $split_query);
+        }
+
+        $post->votePost($split_query['id'],$split_query['score']);
+
+        header("Location:/thread/" . $split_query['thread_id']);
+    }
 }

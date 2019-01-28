@@ -62,4 +62,7 @@ $routes=[
     '/thread/report_post'=>['controller'=>'ThreadController',
                             'action'=>'reportPost'],
 
+    '/thread/vote_post'=>['controller'=>'ThreadController',
+                            'action'=>'votePost'],
+
 ];

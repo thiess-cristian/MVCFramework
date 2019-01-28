@@ -57,7 +57,6 @@
                                class="btn btn-danger"
                                style="height: 40px">Delete post</a>
                         {% endif %}
-
                     {% endif %}
 
                         <a href="/thread/report_post?id={{ value.id }}&thread_id={{ params.thread_id }}"
@@ -67,6 +66,14 @@
                     <input id="button{{ id }}" type="button" onclick="replyClicked({{ id }});" value="Reply"
                            class="btn btn-primary" style="height: 40px">
                     </div>
+
+                    <a href="/thread/vote_post?id={{ value.id }}&thread_id={{ params.thread_id }}&score=-1"
+                       class="btn btn-danger"
+                       style="height: 40px">-1</a>
+                    {{ value.score }}
+                    <a href="/thread/vote_post?id={{ value.id }}&thread_id={{ params.thread_id }}&score=1"
+                       class="btn btn-success"
+                       style="height: 40px">+1</a>
                 </div>
 
             {% endif %}

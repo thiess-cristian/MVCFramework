@@ -57,4 +57,14 @@ class Post extends Model
 
         $stmt->execute([$id]);
     }
+
+    public function votePost($id,$score){
+        $pdo=$this->newDbCon();
+        $sql="update post set score=score+".$score." where id=?";
+
+        $stmt=$pdo->prepare($sql);
+
+        $stmt->execute([$id]);
+
+    }
 }
