@@ -34,4 +34,27 @@ class Post extends Model
 
         return $data;
     }
+
+    public function getReportedPosts(){
+        $pdo=$this->newDbCon();
+        $sql="select * from post where reported=1";
+
+        $stmt=$pdo->prepare($sql);
+
+        $stmt->execute();
+
+        $data=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function reportPost($id){
+
+        $pdo=$this->newDbCon();
+        $sql="update post set reported=1 where id=?";
+
+        $stmt=$pdo->prepare($sql);
+
+        $stmt->execute([$id]);
+    }
 }

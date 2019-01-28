@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 
+use App\Models\Post;
 use App\Models\Thread;
 use App\Models\User;
 use Framework\Controller;
@@ -23,6 +24,11 @@ class UserPageController extends Controller
         $thread = new Thread();
         $threads = $thread->getThreads($params['id']);
         $params['threads'] = $threads;
+
+        $post_model=new Post();
+        $posts=$post_model->getReportedPosts();
+        $params['posts']=$posts;
+
         $this->view("UserPage.html.twig", $params);
     }
 }

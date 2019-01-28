@@ -27,4 +27,30 @@
         <hr>
     {% endfor %}
 
+    {% if params.username=='admin' %}
+        <h3>Reported posts</h3>
+        {% for value in params.posts %}
+
+
+
+            <div class="row">
+                <div class="col-lg-11">
+
+                    <div class="card ">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <a href=/thread/{{ value.thread_id }}#{{ value.id }} >{{ value.content }}</a>
+                            </div>
+                            <div class="card-subtitle mb-2 text-muted">
+                                Posted on:{{ value.created }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
 {% endblock %}

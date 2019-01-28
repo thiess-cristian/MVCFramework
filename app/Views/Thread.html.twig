@@ -15,7 +15,7 @@
     {% set thread_check='true' %}
     {% set id=0 %}
     {% for value in params.posts %}
-        <div class="row">
+        <div class="row" id="{{ value.id }}">
 
             <div class="col-lg-10">
                 <div class="card ">
@@ -59,6 +59,11 @@
                         {% endif %}
 
                     {% endif %}
+
+                        <a href="/thread/report_post?id={{ value.id }}&thread_id={{ params.thread_id }}"
+                           class="btn btn-warning"
+                           style="height: 40px">Report post</a>
+
                     <input id="button{{ id }}" type="button" onclick="replyClicked({{ id }});" value="Reply"
                            class="btn btn-primary" style="height: 40px">
                     </div>

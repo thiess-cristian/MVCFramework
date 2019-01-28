@@ -59,5 +59,7 @@ $routes=[
     '/thread/delete_thread'=>['controller'=>'ThreadController',
                             'action'=>'deleteThread'],
 
+    '/thread/report_post'=>['controller'=>'ThreadController',
+                            'action'=>'reportPost'],
 
 ];

@@ -86,4 +86,17 @@ class ThreadController extends Controller
 
         header("Location:/");
     }
+
+    public function reportPost(array $params){
+        $post =new Post();
+
+        $split_query = null;
+        if (isset($params['query'])) {
+            parse_str($params['query'], $split_query);
+        }
+
+        $post->reportPost($split_query['id']);
+
+        header("Location:/thread/" . $split_query['thread_id']);
+    }
 }
