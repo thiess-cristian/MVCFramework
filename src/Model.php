@@ -94,7 +94,7 @@ abstract class Model
             $columns .= $key . $searchStr . "?";
             //if we are not at the last element with the iteration
             if($i < (count($data))) {
-                $columns .= "AND ";
+                $columns .= " AND ";
             }
             $i++;
         }
@@ -119,8 +119,13 @@ abstract class Model
     /**
      *Insert new data in table
      */
-    public function new(array $data): void
+    public function new(array $data): int
     {
+        list($columns, $values) = $this->prepareStmt($data);
+        $db = $this->newDbCon();
+        $stmt = $db->prepare('INSERT INTO ' . $this->table . ' SET ' . $columns);
+        $stmt->execute($values);
+        return $db->lastInsertId();
     }
 
     /**
