@@ -14,6 +14,9 @@
     <hr>
     {% set thread_check='true' %}
     {% set id=0 %}
+
+
+
     {% for value in params.posts %}
         <div class="row" id="{{ value.id }}">
 
@@ -67,12 +70,21 @@
                                class="btn btn-primary btn-sm">
                     </div>
 
+                    {% set pozitive_button='btn btn-primary btn-sm' %}
+                    {% set negative_button='btn btn-primary btn-sm' %}
+
+                    {% if value.score_user == -1 %}
+                        {% set negative_button='btn btn-danger btn-sm' %}
+                    {% elseif  value.score_user == 1 %}
+                        {% set pozitive_button='btn btn-success btn-sm' %}
+                    {% endif %}
+
                     <a href="/thread/vote_post?id={{ value.id }}&thread_id={{ params.thread_id }}&score=-1"
-                       class="btn btn-danger btn-sm"
+                       class="{{ negative_button }}"
                     >-1</a>
                     {{ value.score }}
                     <a href="/thread/vote_post?id={{ value.id }}&thread_id={{ params.thread_id }}&score=1"
-                       class="btn btn-success btn-sm"
+                       class="{{ pozitive_button }}"
                     >+1</a>
                 </div>
 

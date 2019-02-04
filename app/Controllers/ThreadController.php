@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 
 use App\Models\Post;
+use App\Models\PostUserScore;
 use App\Models\Thread;
 use Framework\Controller;
 
@@ -15,12 +16,27 @@ class ThreadController extends Controller
 
         $posts = $thread->getPosts($params);
 
+        $postUserScoreModel = new PostUserScore();
+
+        session_start();
+
+        $uid = $_SESSION['uid'];
+
+        $userScores = $postUserScoreModel->getAllScoreUser($uid);
+
+        foreach ($posts as &$value) {
+            foreach ($userScores as $score) {
+                if ($value['id'] == $score['id_post']) {
+                    $value['score_user'] = $score['score_user'];
+                }
+            }
+        }
+
         $subject = $thread->getThreadSubject($params);
 
         $data['posts'] = $posts;
         $data['subject'] = $subject['subject'];
         $data['thread_id'] = $params['id'];
-
 
         $this->view('/Thread.html.twig', $data);
     }
@@ -61,8 +77,9 @@ class ThreadController extends Controller
         // header("Location:/thread/".$split_query['thread_id']);
     }
 
-    public function deletePost(array $params){
-        $post =new Post();
+    public function deletePost(array $params)
+    {
+        $post = new Post();
 
         $split_query = null;
         if (isset($params['query'])) {
@@ -74,8 +91,9 @@ class ThreadController extends Controller
         header("Location:/thread/" . $split_query['thread_id']);
     }
 
-    public function deleteThread(array $params){
-        $thread=new Thread();
+    public function deleteThread(array $params)
+    {
+        $thread = new Thread();
 
         $split_query = null;
         if (isset($params['query'])) {
@@ -87,8 +105,9 @@ class ThreadController extends Controller
         header("Location:/");
     }
 
-    public function reportPost(array $params){
-        $post =new Post();
+    public function reportPost(array $params)
+    {
+        $post = new Post();
 
         $split_query = null;
         if (isset($params['query'])) {
@@ -100,15 +119,16 @@ class ThreadController extends Controller
         header("Location:/thread/" . $split_query['thread_id']);
     }
 
-    public function votePost(array $params){
-        $post =new Post();
+    public function votePost(array $params)
+    {
+        $post = new Post();
 
         $split_query = null;
         if (isset($params['query'])) {
             parse_str($params['query'], $split_query);
         }
 
-        $post->votePost($split_query['id'],$split_query['score']);
+        $post->votePost($split_query['id'], $split_query['score']);
 
         header("Location:/thread/" . $split_query['thread_id']);
     }
