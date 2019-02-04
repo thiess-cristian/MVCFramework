@@ -60,32 +60,60 @@ abstract class Model
      * 1. Will extract values from $data
      * 2. Will create the prepared sql string with columns from $data
      */
-    protected function prepareDataForStmt(array $data): array
+    private function prepareStmt(array $data): array
+    {
+        $i = 1;
+        $columns = '';
+        $values = [];
+        foreach ($data as $key => $value) {
+            $values[] = $value;
+            $columns .= $key .'=?';
+            if($i < (count($data))) {
+                $columns .= ", ";
+            }
+            $i++;
+        }
+        return [$columns, $values];
+    }
+    /**
+     * this function will prepare data to be used in sql statement
+     * 1. Will extract values from $data
+     * 2. Will create the prepared sql string with columns from $data
+     */
+    protected function prepareDataSearchForStmt(array $data, bool $like): array
     {
         $columns = '';
         $values = [];
-
-        for ($i = 0; $i < count($data); $i++) {
-
-            $values[] = $data[$i];
-            $columns .= "key($data) = ? ";
+        $i = 1;
+        $searchStr = "=";
+        if ($like) {
+            $searchStr = " LIKE ";
+        }
+        foreach($data as $key => $value) {
+            $values[]= $value;
+            $columns .= $key . $searchStr . "?";
             //if we are not at the last element with the iteration
-            if (count($data) < ($i + 1)) {
+            if($i < (count($data))) {
                 $columns .= "AND ";
             }
+            $i++;
         }
         return [$columns, $values];
     }
 
+
     /**
      *Find data with values
      */
-    public Function find(array $data): string
+    public Function find(array $data,bool $like = false): array
     {
-        list($columns, $values) = $this->prepareDataForStmt($data);
+        list($columns, $values) = $this->prepareDataSearchForStmt($data, $like);
         $db = $this->newDbCon();
         $stmt = $db->prepare("SELECT * from $this->table where $columns");
-        return $stmt->execute([$values]);
+
+        $stmt->execute($values);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -96,10 +124,17 @@ abstract class Model
     }
 
     /**
-     *Update data in table
+     * Update data in table
      */
-    public function update(array $data): void
+    public function update(array $where, array $data): bool
     {
+        list($columns, $values) = $this->prepareStmt($data);
+        //add the value of $where array to the list of $values that will be used in the prepared statement
+        //reset($where) it's a trick to extract the value of an associative array with a single element
+        $values[] = reset($where);
+        $db = $this->newDbCon();
+        $stmt = $db->prepare('UPDATE ' . $this->table . ' SET ' . $columns . ' WHERE ' . key($where) . '=?');
+        return $stmt->execute($values);
     }
 
     /**
