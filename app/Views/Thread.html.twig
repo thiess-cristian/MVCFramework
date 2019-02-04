@@ -20,12 +20,13 @@
             <div class="col-lg-10">
                 <div class="card ">
                     <div class="card-body">
-                        <div class="card-title">
+                        <div class="card-header">
+
                             <strong id="name{{ id }}">{{ value.name }}</strong> <span
                                     class="text-muted"> posted on {{ value.created }}
                                 :</span>
-                        </div>
 
+                        </div>
                         <div class="card-text" id="content{{ id }}">
                             <p style="white-space: pre-line;">
 
@@ -44,36 +45,35 @@
                 <div class="col-lg-2">
                     <div class="btn-group-vertical" style="width: 140px">
 
-                    {% if params.uid==value.user_account_id  or params.username=="admin" %}
+                        {% if params.uid==value.user_account_id  or params.username=="admin" %}
 
 
-                        {% if thread_check=='true' %}
-                            <a href="/thread/delete_thread?thread_id={{ params.thread_id }}"
-                               class="btn btn-danger"
-                               style="height: 40px">Delete thread</a>
-                            {% set thread_check='false' %}
-                        {% else %}
-                            <a href="/thread/delete_post?id={{ value.id }}&thread_id={{ params.thread_id }}"
-                               class="btn btn-danger"
-                               style="height: 40px">Delete post</a>
+                            {% if thread_check=='true' %}
+                                <a href="/thread/delete_thread?thread_id={{ params.thread_id }}"
+                                   class="btn btn-danger btn-sm">Delete thread</a>
+                                {% set thread_check='false' %}
+                            {% else %}
+                                <a href="/thread/delete_post?id={{ value.id }}&thread_id={{ params.thread_id }}"
+                                   class="btn btn-danger btn-sm"
+                                >Delete post</a>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
 
                         <a href="/thread/report_post?id={{ value.id }}&thread_id={{ params.thread_id }}"
-                           class="btn btn-warning"
-                           style="height: 40px">Report post</a>
+                           class="btn btn-primary btn-sm"
+                        >Report post</a>
 
-                    <input id="button{{ id }}" type="button" onclick="replyClicked({{ id }});" value="Reply"
-                           class="btn btn-primary" style="height: 40px">
+                        <input id="button{{ id }}" type="button" onclick="replyClicked({{ id }});" value="Reply"
+                               class="btn btn-primary btn-sm">
                     </div>
 
                     <a href="/thread/vote_post?id={{ value.id }}&thread_id={{ params.thread_id }}&score=-1"
-                       class="btn btn-danger"
-                       style="height: 40px">-1</a>
+                       class="btn btn-danger btn-sm"
+                    >-1</a>
                     {{ value.score }}
                     <a href="/thread/vote_post?id={{ value.id }}&thread_id={{ params.thread_id }}&score=1"
-                       class="btn btn-success"
-                       style="height: 40px">+1</a>
+                       class="btn btn-success btn-sm"
+                    >+1</a>
                 </div>
 
             {% endif %}
