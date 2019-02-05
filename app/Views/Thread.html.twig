@@ -6,8 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
-
     <h1>{{ params.subject }}</h1>
     <hr>
     {% set thread_check='true' %}
@@ -31,12 +29,9 @@
                         </div>
                         <div class="card-text" id="content{{ id }}">
                             <p style="white-space: pre-line;">
-
                                 {{ value.content }}
                             </p>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -102,16 +97,20 @@
         </form>
     {% endif %}
 
-
     <script type="text/javascript">
         function replyClicked(id) {
             let replyContent = document.getElementById("content" + id);
             let textArea = document.getElementById('formText');
             let username = document.getElementById("name" + id);
 
-            textArea.textContent += "reply to what " + username.textContent + " said:";
+            let textReply="reply to what " + username.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() + " said:";
+
+            textArea.textContent += textReply;
             textArea.textContent += replyContent.textContent;
             textArea.textContent += "___________";
+
+            let scrollingElement = (document.scrollingElement || document.body);
+            scrollingElement.scrollTop = scrollingElement.scrollHeight;
         }
     </script>
 {% endblock %}
