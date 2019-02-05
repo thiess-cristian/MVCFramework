@@ -10,6 +10,7 @@ namespace App\Models;
 
 use Framework\Model;
 use \PDO;
+
 class PostUserScore extends Model
 {
     protected $table = "post_user_score";
@@ -29,7 +30,8 @@ class PostUserScore extends Model
         return $this->find(['id_post' => $postId, 'id_user' => $userId]);
     }
 
-    public function getAllScoreUser($uid){
+    public function getAllScoreUser($uid): array
+    {
         $pdo = $this->newDbCon();
 
         $sql = "select id_post, score_user from post_user_score  where id_user=?";
@@ -42,7 +44,8 @@ class PostUserScore extends Model
     }
 
 
-    public function adjustScore(string $postId, string $userId, int &$score):void{
+    public function adjustScore(string $postId, string $userId, int &$score): void
+    {
 
         $scoreEntry = $this->findScore($postId, $userId)[0];
 

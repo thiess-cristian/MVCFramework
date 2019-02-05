@@ -16,7 +16,7 @@ use Framework\Controller;
 
 class UserPageController extends Controller
 {
-    public function showUserPage(array $params)
+    public function showUserPage(array $params):void
     {
         $user = new User();
         $userInfo=$user->get($params['id']);

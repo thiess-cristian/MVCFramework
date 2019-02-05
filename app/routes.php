@@ -4,15 +4,8 @@ $routes=[
     '/'=>['controller'=>'CategoriesController',
           'action'    =>'showCategories'],
 
-
-    '/user/{id}'=>['controller'=>'UserController',
-                    'action'   =>'show',],
-
     '/404'=>['controller'=>'IndexController',
                 'action'=>'notFound',],
-
-    '/user'=>['controller'=>'UserController',
-                'action'=>'show'],
 
     '/register'=>['controller'=>'IndexController',
                 'action'=>'showRegister'],

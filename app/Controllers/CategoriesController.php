@@ -9,7 +9,7 @@ use Framework\Controller;
 class CategoriesController extends Controller
 {
 
-    public function showCategories(array $params)
+    public function showCategories(array $params): void
     {
         $categories = new Categories();
 

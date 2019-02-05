@@ -103,7 +103,7 @@
             let textArea = document.getElementById('formText');
             let username = document.getElementById("name" + id);
 
-            let textReply="reply to what " + username.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() + " said:";
+            let textReply = "reply to what " + username.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim() + " said:";
 
             textArea.textContent += textReply;
             textArea.textContent += replyContent.textContent;

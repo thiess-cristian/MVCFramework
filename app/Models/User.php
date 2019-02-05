@@ -39,7 +39,7 @@ class User extends Model
         }
     }
 
-    public function login(string $username, string $password):bool
+    public function login(string $username, string $password): bool
     {
         $pdo = $this->newDbCon();
         $sql = "select id,hashed_password,name from user_account where name=?";
@@ -52,7 +52,7 @@ class User extends Model
         if (password_verify($password, $data->hashed_password)) {
             session_start();
             $_SESSION['username'] = $username;
-            $_SESSION['uid']=$data->id;
+            $_SESSION['uid'] = $data->id;
             header("Location:/");
             return true;
         }

@@ -9,16 +9,17 @@ class Categories extends Model
 {
     protected $table = "category";
 
-    public function getCategories():array {
+    public function getCategories(): array
+    {
 
         $pdo = $this->newDbCon();
 
-        $sql="select * from category";
+        $sql = "select * from category";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
-        $data=$stmt->fetchAll();
+        $data = $stmt->fetchAll();
 
         return $data;
 

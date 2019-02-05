@@ -10,7 +10,7 @@ use Framework\Controller;
 
 class ThreadController extends Controller
 {
-    public function showThread(array $params)
+    public function showThread(array $params): void
     {
         $thread = new Thread();
 
@@ -41,7 +41,7 @@ class ThreadController extends Controller
         $this->view('/Thread.html.twig', $data);
     }
 
-    public function postReply(array $params)
+    public function postReply(array $params): void
     {
         $content = $_POST['content'];
 
@@ -61,7 +61,7 @@ class ThreadController extends Controller
     }
 
 
-    public function addReplyText(array $params)
+    public function addReplyText(array $params): void
     {
 
         $post = new Post();
@@ -77,7 +77,7 @@ class ThreadController extends Controller
         // header("Location:/thread/".$split_query['thread_id']);
     }
 
-    public function deletePost(array $params)
+    public function deletePost(array $params): void
     {
         $post = new Post();
 
@@ -91,7 +91,7 @@ class ThreadController extends Controller
         header("Location:/thread/" . $split_query['thread_id']);
     }
 
-    public function deleteThread(array $params)
+    public function deleteThread(array $params): void
     {
         $thread = new Thread();
 
@@ -105,7 +105,7 @@ class ThreadController extends Controller
         header("Location:/");
     }
 
-    public function reportPost(array $params)
+    public function reportPost(array $params): void
     {
         $post = new Post();
 
@@ -116,10 +116,10 @@ class ThreadController extends Controller
 
         $post->reportPost($split_query['id']);
 
-        header("Location:/thread/" . $split_query['thread_id']);
+        header("Location:/thread/" . $split_query['thread_id'] . "#" . $split_query['id']);
     }
 
-    public function votePost(array $params)
+    public function votePost(array $params): void
     {
         $post = new Post();
 

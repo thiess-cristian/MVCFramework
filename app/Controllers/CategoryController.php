@@ -9,7 +9,7 @@ use Framework\Controller;
 
 class CategoryController extends Controller
 {
-    public function showCategory(array $params)
+    public function showCategory(array $params): void
     {
         $category = new Category();
         $threads = $category->getThreadsFromCategory($params);
@@ -23,13 +23,13 @@ class CategoryController extends Controller
         $this->view("/Category.html.twig", $params);
     }
 
-    public function showThreadCreator(array $params)
+    public function showThreadCreator(array $params): void
     {
         $params['category_id'] = $params['query'];
         $this->view("/CreateThread.html.twig", $params);
     }
 
-    public function createThread(array $params)
+    public function createThread(array $params): void
     {
         $split_query = null;
         if (isset($params['query'])) {

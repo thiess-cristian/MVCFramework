@@ -10,7 +10,7 @@ class Post extends Model
 
     protected $table = "post";
 
-    public function createPost(String $text, String $threadId, String $userId)
+    public function createPost(String $text, String $threadId, String $userId): void
     {
 
         $pdo = $this->newDbCon();
@@ -22,7 +22,7 @@ class Post extends Model
         $stmt->execute([$text, $threadId, $userId]);
     }
 
-    public function getPost(String $id)
+    public function getPost(String $id): array
     {
         $pdo = $this->newDbCon();
 
@@ -37,17 +37,17 @@ class Post extends Model
         return $data;
     }
 
-    public function getReportedPosts()
+    public function getReportedPosts(): array
     {
         return $this->find(['reported' => 1]);
     }
 
-    public function reportPost($id)
+    public function reportPost($id): array
     {
         $this->update(['id' => $id], ['reported' => 1]);
     }
 
-    public function votePost($id, $score)
+    public function votePost($id, $score): void
     {
         $pdo = $this->newDbCon();
 
@@ -55,8 +55,8 @@ class Post extends Model
         $uid = $_SESSION['uid'];
 
         $postUserScoreModel = new PostUserScore();
-        
-        $postUserScoreModel->adjustScore($id,$uid,$score);
+
+        $postUserScoreModel->adjustScore($id, $uid, $score);
 
         $sql = "update post set score=score+" . $score . " where id=?";
         $stmt = $pdo->prepare($sql);
