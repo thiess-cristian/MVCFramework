@@ -45,10 +45,12 @@ $routes=[
                         'action'=>'showUserPage'],
 
     '/thread/delete_post'=>['controller'=>'ThreadController',
-                        'action'=>'deletePost'],
+                        'action'=>'deletePost',
+                        'guard'=>'DeleteGuard'],
 
     '/thread/delete_thread'=>['controller'=>'ThreadController',
-                            'action'=>'deleteThread'],
+                            'action'=>'deleteThread',
+                            'guard'=>'DeleteGuard'],
 
     '/thread/report_post'=>['controller'=>'ThreadController',
                             'action'=>'reportPost'],

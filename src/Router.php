@@ -27,7 +27,7 @@ class Router
         }
         $controller = $this->routes[$uri]['controller'];
 
-        $this->checkGuard($uri);
+        $this->checkGuard($uri,$params);
 
         $className = 'App\\Controllers\\' . $controller;
         $controllerObj = new $className();
@@ -35,12 +35,12 @@ class Router
         $controllerObj->{$action}($params);
     }
 
-    private function checkGuard(string $route): void
+    private function checkGuard(string $route,$params): void
     {
         if (isset($this->routes[$route]['guard'])) {
             $guard = "\\App\\Guards\\" . $this->routes[$route]['guard'];
             //instantiate and execute the handle action
-            (new $guard)->handle();
+            (new $guard)->handle($params);
         }
     }
 
