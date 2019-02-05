@@ -19,7 +19,8 @@ class UserPageController extends Controller
     public function showUserPage(array $params)
     {
         $user = new User();
-        $pdo = $user->newDbCon();
+        $userInfo=$user->get($params['id']);
+        $params['username_page']=$userInfo['name'];
 
         $thread = new Thread();
         $threads = $thread->getThreads($params['id']);

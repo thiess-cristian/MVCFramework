@@ -47,12 +47,12 @@ abstract class Model
     /**
      *Return data with specified id/index
      */
-    public function get($id): string
+    public function get($id):array
     {
         $db = $this->newDbCon();
         $stmt = $db->prepare("SELECT * from $this->table where id=?");
         $stmt->execute([$id]);
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     /**

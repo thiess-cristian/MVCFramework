@@ -16,7 +16,7 @@ class AccountController extends Controller
         $pass = $_POST['pass'];
 
         if ($user->login($username, $pass)) {
-            $pageController = new PageController();
+            $pageController = new IndexController();
             $pageController->indexAction($params);
         } else {
             $this->view("User/Login.html.twig", $params);

@@ -16,14 +16,11 @@ class CategoryController extends Controller
 
         $name = $category->getCategoryName($params);
 
-        $data = array();
+        $params['threads'] = $threads;
+        $params['category_name'] = $name['name'];
+        $params['category_id'] = $params['id'];
 
-        $data['threads'] = $threads;
-        $data['category_name'] = $name['name'];
-        $data['category_id'] = $params['id'];
-
-
-        $this->view("/Category.html.twig", $data);
+        $this->view("/Category.html.twig", $params);
     }
 
     public function showThreadCreator(array $params)
